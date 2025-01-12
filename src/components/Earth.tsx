@@ -5,6 +5,7 @@ import { useLoader } from '@react-three/fiber';
 
 const Earth: FC = () => {
     const earthRef = useRef<Mesh>(null);
+    const atmosphereRef = useRef<Mesh>(null);
 
     const [colorMap, normalMap, specularMap] = useLoader(TextureLoader, [
         'src/assets/textures/earth/day_map/8k.jpg',
@@ -16,19 +17,32 @@ const Earth: FC = () => {
         if (earthRef.current) {
             earthRef.current.rotation.y += 0.0002;
         }
+        if (atmosphereRef.current) {
+            atmosphereRef.current.rotation.y += 0.002; // Sync rotation
+        }
     });
 
     return (
-        <mesh ref={earthRef}>
-            <sphereGeometry args={[1, 64, 64]} />
+        <group>
+            <mesh ref={earthRef}>
+                <sphereGeometry args={[1, 64, 64]}/>
+                <meshPhongMaterial
+                    map={colorMap}
+                    normalMap={normalMap}
+                    specularMap={specularMap}
+                    shininess={10}
+                />
+            </mesh>
 
-            <meshPhongMaterial
-                map={colorMap}            // Base color
-                normalMap={normalMap}     // Surface bumps and details
-                specularMap={specularMap} // Simulated water reflections
-                shininess={10}            // Adjust shininess for realism
-            />
-        </mesh>
+            <mesh ref={atmosphereRef}>
+                <sphereGeometry args={[1.025, 64, 64]}/>
+                <meshBasicMaterial
+                    color="lightblue"
+                    transparent={true}
+                    opacity={0.1}
+                />
+            </mesh>
+        </group>
     );
 };
 
