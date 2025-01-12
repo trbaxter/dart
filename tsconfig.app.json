@@ -6,6 +6,8 @@
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
+    "esModuleInterop": true,
+    "types": ["@react-three/fiber"],
 
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -23,6 +25,6 @@
     "noUncheckedSideEffectImports": true
   },
   "include": [
-    "dart/src"
+    "src"
   ]
 }
