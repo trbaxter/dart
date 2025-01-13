@@ -7,8 +7,6 @@ import { Scene, Color } from "three";
  */
 export function initializeScene(): Scene {
     const scene = new Scene();
-
-    // Set background color
     scene.background = new Color(0x000000);
 
     return scene;

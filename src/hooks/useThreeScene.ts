@@ -36,7 +36,6 @@ export function useThreeScene({ containerRef, onAnimate, onCameraSetup }: UseThr
 
         setupLighting(scene);
 
-        // Start the animation loop
         startAnimationLoop({
             renderer,
             scene,
@@ -48,19 +47,16 @@ export function useThreeScene({ containerRef, onAnimate, onCameraSetup }: UseThr
         const handleResize = () => resizeHandler(renderer, camera);
         window.addEventListener("resize", handleResize);
 
-        // Cleanup logic
         return () => {
-            stopAnimationLoop(animationFrameIdRef); // Stop the animation loop
-            cleanupRenderer(renderer, containerRef); // Dispose of the renderer
+            stopAnimationLoop(animationFrameIdRef);
+            cleanupRenderer(renderer, containerRef);
             window.removeEventListener("resize", handleResize);
         };
     }, [containerRef, onAnimate, onCameraSetup]);
 
-    // HMR Cleanup
     if (import.meta.hot) {
         import.meta.hot.dispose(() => {
-            console.log("Cleaning up animation loop on HMR...");
-            stopAnimationLoop(animationFrameIdRef); // Stop any ongoing animation loop
+            stopAnimationLoop(animationFrameIdRef);
         });
     }
 
@@ -97,7 +93,6 @@ function startAnimationLoop({
         animationFrameIdRef.current = requestAnimationFrame(animate);
     };
 
-    // Cancel any previous animation loop before starting a new one
     if (animationFrameIdRef.current) {
         cancelAnimationFrame(animationFrameIdRef.current);
     }

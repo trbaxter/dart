@@ -21,40 +21,39 @@ export function globeSetup(scene: Scene) {
     globeMaterial.emissiveIntensity = 0.4;
     globeMaterial.shininess = 0.7;
     globeMaterial.side = FrontSide;
-    globeMaterial.depthTest = true;
 
     scene.add(globe);
 
-    setTimeout(() => {
-        // globe.arcsData(travelHistory.flights);
-        globe.arcColor((e: any) => (e.status ? "#9cff00" : "#FF4000"));
-        globe.arcAltitude((e: any) => e.arcAlt);
-        globe.arcStroke((e: any) => (e.status ? 0.5 : 0.3));
-        globe.arcDashLength(0.9);
-        globe.arcDashGap(4);
-        globe.arcDashAnimateTime(1000);
-        globe.arcsTransitionDuration(1000);
-        globe.arcDashInitialGap((e: any) => e.order * 1);
-    }, 100);
+    // setTimeout(() => {
+    //     // globe.arcsData(travelHistory.flights);
+    //     globe.arcColor((e: any) => (e.status ? "#9cff00" : "#FF4000"));
+    //     globe.arcAltitude((e: any) => e.arcAlt);
+    //     // globe.arcStroke((e: any) => (e.status ? 0.5 : 0.3));
+    //     // globe.arcDashLength(0.9);
+    //     // globe.arcDashGap(4);
+    //     // globe.arcDashAnimateTime(1000);
+    //     // globe.arcsTransitionDuration(1000);
+    //     globe.arcDashInitialGap((e: any) => e.order * 1);
+    // }, 100);
 
-    setTimeout(() => {
-        // globe.labelsData(airportHistory.airports);
-        globe.labelColor(() => "#ffcb21");
-        globe.labelDotOrientation((e: any) => (e.text === "ALA" ? "top" : "right"));
-        globe.labelDotRadius(0.3);
-        globe.labelSize((e: any) => e.size);
-        globe.labelText("city");
-        globe.labelResolution(6);
-        globe.labelAltitude(0.01);
-    }, 200);
+    // setTimeout(() => {
+    //     // globe.labelsData(airportHistory.airports);
+    //     globe.labelColor(() => "#ffcb21");
+    //     // globe.labelDotOrientation((e: any) => (e.text === "ALA" ? "top" : "right"));
+    //     globe.labelDotRadius(0.3);
+    //     globe.labelSize((e: any) => e.size);
+    //     globe.labelText("city");
+    //     globe.labelResolution(6);
+    //     globe.labelAltitude(0.01);
+    // }, 200);
 
-    setTimeout(() => {
-        // globe.pointsData(airportHistory.airports);
-        globe.pointColor(() => "#ffffff");
-        globe.pointsMerge(true);
-        globe.pointAltitude(0.07);
-        globe.pointRadius(0.05);
-    }, 300);
+    // setTimeout(() => {
+    //     // globe.pointsData(airportHistory.airports);
+    //     // globe.pointColor(() => "#ffffff");
+    //     // globe.pointsMerge(true);
+    //     // globe.pointAltitude(0.07);
+    //     // globe.pointRadius(0.05);
+    // }, 300);
 
 
     return globe;

@@ -12,10 +12,8 @@ export function cleanupRenderer(
     containerRef: RefObject<HTMLDivElement>
 ): void {
     try {
-        // Dispose of the renderer to free GPU resources
         renderer.dispose();
 
-        // Remove the renderer's DOM element from the container
         if (containerRef.current) {
             while (containerRef.current.firstChild) {
                 containerRef.current.removeChild(containerRef.current.firstChild);
