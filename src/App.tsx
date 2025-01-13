@@ -1,9 +1,12 @@
-import Globe from "./components/Globe";
+import Globe from "./homepage/components/Globe";
 
-function App() {
+export default function App() {
+
     return (
-        <Globe/>
+        <>
+
+            <Globe/>
+
+        </>
     );
 }
-
-export default App;

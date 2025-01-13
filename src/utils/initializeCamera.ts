@@ -4,25 +4,27 @@ import { PerspectiveCamera, Scene } from "three";
  * Initializes and configures a PerspectiveCamera.
  *
  * @param scene - The Scene to which the camera will be added.
- * @param fov - Field of view for the camera (default is 40).
- * @param near - Near clipping plane (default is 0.1).
- * @param far - Far clipping plane (default is 3000).
+ * @param options - Optional parameters for camera configuration.
  * @returns The configured PerspectiveCamera instance.
  */
 export function initializeCamera(
     scene: Scene,
-    fov: number = 40,
-    near: number = 5,
-    far: number = 1000
+    options: {
+        fov?: number;
+        near?: number;
+        far?: number;
+        position?: [number, number, number];
+    } = {}
 ): PerspectiveCamera {
     const camera = new PerspectiveCamera(
-        fov,
+        options.fov ?? 40,
         window.innerWidth / window.innerHeight,
-        near,
-        far
+        options.near ?? 5,
+        options.far ?? 1000
     );
 
-    camera.position.set(0, 0, 400);
+    camera.position.set(...(options.position ?? [0, 0, 400]));
     scene.add(camera);
+
     return camera;
 }
