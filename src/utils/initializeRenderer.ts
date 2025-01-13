@@ -14,6 +14,7 @@ export function initializeRenderer(containerRef: RefObject<HTMLDivElement>): Web
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(window.devicePixelRatio);
 
+
     if (containerRef.current) {
         containerRef.current.appendChild(renderer.domElement);
     }

@@ -7,7 +7,7 @@ import { Scene, AmbientLight, DirectionalLight } from "three";
  */
 export function setupLighting(scene: Scene): void {
     // Add ambient light for overall illumination
-    const ambientLight = new AmbientLight(0xbbbbbb, 0.3);
+    const ambientLight = new AmbientLight(0xbbbbbb, 0.5);
     scene.add(ambientLight);
 
     // Add directional light for focused illumination

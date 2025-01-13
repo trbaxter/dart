@@ -1,22 +1,23 @@
-import { RefObject, useEffect, useRef } from "react";
+import {MutableRefObject, RefObject, useEffect, useRef} from "react";
 import { PerspectiveCamera, Scene, WebGLRenderer } from "three";
-import { initializeRenderer } from "../utils/initializeRenderer.ts";
-import { initializeScene } from "../utils/initializeScene.ts";
-import { initializeCamera } from "../utils/initializeCamera.ts";
-import { setupLighting } from "../utils/setupLighting.ts";
-import {resizeHandler} from "../utils/resizeHandler.ts";
-import {cleanupRenderer} from "../utils/cleanupRenderer.ts";
+import { initializeRenderer } from "../utils/initializeRenderer";
+import { initializeScene } from "../utils/initializeScene";
+import { initializeCamera } from "../utils/initializeCamera";
+import { setupLighting } from "../utils/setupLighting";
+import { resizeHandler } from "../utils/resizeHandler";
+import { cleanupRenderer } from "../utils/cleanupRenderer";
 
 interface UseThreeSceneProps {
     containerRef: RefObject<HTMLDivElement>;
     onAnimate?: (time: number, deltaTime: number) => void;
+    onCameraSetup?: (camera: PerspectiveCamera) => void;
 }
 
-export function useThreeScene({containerRef, onAnimate}: UseThreeSceneProps) {
+export function useThreeScene({ containerRef, onAnimate, onCameraSetup }: UseThreeSceneProps) {
     const rendererRef = useRef<WebGLRenderer | null>(null);
     const sceneRef = useRef<Scene | null>(null);
     const cameraRef = useRef<PerspectiveCamera | null>(null);
-    const animationIdRef = useRef<number | null>(null);
+    const animationFrameIdRef = useRef<number | null>(null);
 
     useEffect(() => {
         if (!containerRef.current) return;
@@ -28,26 +29,40 @@ export function useThreeScene({containerRef, onAnimate}: UseThreeSceneProps) {
         sceneRef.current = scene;
 
         const camera = initializeCamera(scene);
+        if (onCameraSetup) {
+            onCameraSetup(camera);
+        }
         cameraRef.current = camera;
 
         setupLighting(scene);
 
-        animationIdRef.current = startAnimationLoop({
+        // Start the animation loop
+        startAnimationLoop({
             renderer,
             scene,
             camera,
             onAnimate,
+            animationFrameIdRef,
         });
 
         const handleResize = () => resizeHandler(renderer, camera);
         window.addEventListener("resize", handleResize);
 
+        // Cleanup logic
         return () => {
-            if (animationIdRef.current) cancelAnimationFrame(animationIdRef.current);
-            cleanupRenderer(renderer, containerRef);
+            stopAnimationLoop(animationFrameIdRef); // Stop the animation loop
+            cleanupRenderer(renderer, containerRef); // Dispose of the renderer
             window.removeEventListener("resize", handleResize);
         };
-    }, [containerRef, onAnimate]);
+    }, [containerRef, onAnimate, onCameraSetup]);
+
+    // HMR Cleanup
+    if (import.meta.hot) {
+        import.meta.hot.dispose(() => {
+            console.log("Cleaning up animation loop on HMR...");
+            stopAnimationLoop(animationFrameIdRef); // Stop any ongoing animation loop
+        });
+    }
 
     return {
         rendererRef,
@@ -56,16 +71,19 @@ export function useThreeScene({containerRef, onAnimate}: UseThreeSceneProps) {
     };
 }
 
-function startAnimationLoop({renderer,
-                             scene,
-                             camera,
-                             onAnimate,
+function startAnimationLoop({
+                                renderer,
+                                scene,
+                                camera,
+                                onAnimate,
+                                animationFrameIdRef,
                             }: {
     renderer: WebGLRenderer;
     scene: Scene;
     camera: PerspectiveCamera;
     onAnimate?: (time: number, deltaTime: number) => void;
-}): number {
+    animationFrameIdRef: MutableRefObject<number | null>;
+}) {
     let previousTime = performance.now();
 
     const animate = (currentTime: number) => {
@@ -74,12 +92,22 @@ function startAnimationLoop({renderer,
 
         onAnimate?.(currentTime, deltaTime);
 
-        // Render the scene
         renderer.render(scene, camera);
 
-        // Request the next frame
-        return requestAnimationFrame(animate);
+        animationFrameIdRef.current = requestAnimationFrame(animate);
     };
 
-    return requestAnimationFrame(animate);
+    // Cancel any previous animation loop before starting a new one
+    if (animationFrameIdRef.current) {
+        cancelAnimationFrame(animationFrameIdRef.current);
+    }
+
+    animationFrameIdRef.current = requestAnimationFrame(animate);
+}
+
+function stopAnimationLoop(animationFrameIdRef: MutableRefObject<number | null>) {
+    if (animationFrameIdRef.current) {
+        cancelAnimationFrame(animationFrameIdRef.current);
+        animationFrameIdRef.current = null;
+    }
 }

@@ -1,36 +1,36 @@
-import {FC, useEffect, useRef} from "react";
-import {useThreeScene} from "../hooks/useThreeScene";
-import {globeSetup} from "../three/globeSetup";
-import {Object3D} from "three";
-import {cullInvisibleObjects} from "../utils/cullInvisibleObjects.ts";
+import { FC, useEffect, useRef } from "react";
+import { useThreeScene } from "../hooks/useThreeScene";
+import { globeSetup } from "../three/globeSetup";
+import { Object3D, PerspectiveCamera } from "three";
 
-const Globe: FC = () => {
+const Globe: FC<{ isRotating?: boolean }> = ({ isRotating = true }) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const globeRef = useRef<Object3D | null>(null);
 
-    const { sceneRef, cameraRef } = useThreeScene({
+    const { sceneRef } = useThreeScene({
         containerRef,
         onAnimate: handleAnimate,
+        onCameraSetup: (camera: PerspectiveCamera) => {
+            camera.position.set(0, 0, 400);
+            camera.lookAt(0, 0, 0);
+        },
     });
 
     useEffect(() => {
-        if (sceneRef.current) {
-            globeRef.current = globeSetup(sceneRef.current); // Store the globe instance
+        if (sceneRef.current && !globeRef.current) {
+            globeRef.current = globeSetup(sceneRef.current);
         }
 
-        if (cameraRef.current) {
-            cameraRef.current.position.set(0, 0, 400);
-            cameraRef.current.lookAt(0, 0, 0);
-        }
-    }, [sceneRef, cameraRef]);
+        return () => {
+            if (globeRef.current) {
+                sceneRef.current?.remove(globeRef.current);
+                globeRef.current = null;
+            }
+        };
+    }, [sceneRef]);
 
     function handleAnimate() {
-        if (cameraRef.current && globeRef.current) {
-            cullInvisibleObjects(cameraRef.current, globeRef.current);
-        }
-
-        if (globeRef.current) {
-
+        if (isRotating && globeRef.current) {
             globeRef.current.rotation.y -= 0.001;
         }
     }
@@ -38,12 +38,7 @@ const Globe: FC = () => {
     return (
         <div
             ref={containerRef}
-            style={{
-                width: "100%",
-                height: "100%",
-                overflow: "hidden",
-                position: "relative",
-            }}
+            className="globe-container"
         />
     );
 };
