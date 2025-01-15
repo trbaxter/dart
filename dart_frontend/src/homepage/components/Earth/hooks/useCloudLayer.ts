@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState, MutableRefObject } from 'react';
-import { Mesh, MeshPhongMaterial, SphereGeometry, TextureLoader, Material } from 'three';
+import {Mesh, MeshPhongMaterial, SphereGeometry, TextureLoader, Material, PerspectiveCamera} from 'three';
 import clouds from '../../../assets/clouds.png';
-import {GlobeMethods} from "react-globe.gl";
+import { GlobeMethods } from "react-globe.gl";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
 /**
  * Adds and manages a rotating cloud layer around a globe object.
@@ -10,23 +11,30 @@ import {GlobeMethods} from "react-globe.gl";
  * @returns A ref object containing the cloud layer mesh (`Mesh`) or `null` if not yet initialized.
  */
 const useCloudLayer = (earthObject: GlobeMethods | undefined): MutableRefObject<Mesh | null> => {
+
+    // Assign reference to Mesh instance with initial null value
     const cloudsMeshRef = useRef<Mesh | null>(null);
     const [globeRadius, setGlobeRadius] = useState<number | null>(null);
 
     // Private helper: Configure the camera
-    const configureCamera = (camera: any) => {
+    const configureCamera = (camera: PerspectiveCamera | undefined) => {
+
+        // Safety check in case of invalid/undefined camera
         if (!camera) return;
 
         // Set camera position and orientation
-        camera.position.set(0, 0, 250); // Static positioning
-        camera.lookAt(0, 0, 0); // Focus towards globe center
+        camera.position.set(0, 0, 250);
+        camera.lookAt(0, 0, 0);
         camera.updateProjectionMatrix();
     };
 
     // Private helper: Configure the controls
-    const configureControls = (controls: any) => {
+    const configureControls = (controls: OrbitControls | undefined) => {
+
+        // Safety check in case of invalid/undefined orbit controls
         if (!controls) return;
 
+        // Set autorotation and speed
         const AUTO_ROTATE_SPEED = 0.35;
         controls.autoRotate = true;
         controls.autoRotateSpeed = AUTO_ROTATE_SPEED;
@@ -53,42 +61,63 @@ const useCloudLayer = (earthObject: GlobeMethods | undefined): MutableRefObject<
         });
     };
 
-    // Private helper: Create the cloud layer mesh
-    const createCloudLayerMesh = (radius: number, texturePath: string): Promise<Mesh> => {
+    /**
+     * Creates a cloud layer mesh for the globe.
+     *
+     * @param radius - The radius of the cloud layer.
+     * @param texturePath - The path to the cloud texture image.
+     * @returns A promise resolving to a `Mesh` representing the cloud layer.
+     */
+    const createCloudLayerMesh = (
+        radius: number,
+        texturePath: string ):
+
+        // Uses promise to load cloud layer only once texture is ready
+        Promise<Mesh<SphereGeometry, MeshPhongMaterial>> => {
         const CLOUDS_ALTITUDE = 0.004;
+
         return new Promise((resolve, reject) => {
             const textureLoader = new TextureLoader();
+
             textureLoader.load(
                 texturePath,
                 (cloudsTexture) => {
-                    const cloudsMesh = new Mesh(
-                        new SphereGeometry(radius * (1 + CLOUDS_ALTITUDE), 50, 50),
-                        new MeshPhongMaterial({ map: cloudsTexture, transparent: true })
-                    );
+                    try {
+                        const cloudsMesh = new Mesh(
+                            new SphereGeometry(radius * (1 + CLOUDS_ALTITUDE), 50, 50),
+                            new MeshPhongMaterial({ map: cloudsTexture, transparent: true })
+                        );
                     resolve(cloudsMesh);
-                },
-                undefined, // onProgress
-                (error) => reject(error)
+                } catch (error) {
+                    reject(new Error(`Error creating mesh: ${error}`));
+                }
+            },
+                (error) => reject(new Error(`Failed to load texture from ${texturePath}: ${error}`))
             );
         });
     };
 
     // Private helper: Animate the cloud layer
-    const animateCloudLayer = (meshRef: MutableRefObject<Mesh | null>, rotationSpeed: number) => {
+    const animateCloudLayer = (
+        meshRef: MutableRefObject<Mesh | null>,
+        rotationSpeed: number) => {
+
+        // Tracks last timestamp for frame-by-frame animation
         let lastTime = 0;
 
         const animate = (currentTime: number) => {
-            const delta = (currentTime - lastTime) / 1000;
+            const delta = (currentTime - lastTime) / 1000;  // Convert delta to seconds
             lastTime = currentTime;
 
             if (meshRef.current) {
-                meshRef.current.rotation.y += rotationSpeed * delta;
+                meshRef.current.rotation.y += rotationSpeed * delta;  // Increment the y-rotation of the mesh
             }
 
-            requestAnimationFrame(animate);
+            requestAnimationFrame(animate);  // Schedule the next frame
+
         };
 
-        requestAnimationFrame(animate);
+        requestAnimationFrame(animate);  // Start the animation loop
     };
 
     // Private helper: Cleanup the cloud layer mesh
@@ -121,7 +150,7 @@ const useCloudLayer = (earthObject: GlobeMethods | undefined): MutableRefObject<
         const controls = earthObject.controls?.();
         configureControls(controls);
 
-        const camera = earthObject.camera?.();
+        const camera = earthObject.camera?.() as PerspectiveCamera;
         configureCamera(camera);
 
         // Remove unwanted DOM elements

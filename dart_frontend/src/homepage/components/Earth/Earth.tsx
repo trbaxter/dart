@@ -7,7 +7,7 @@ import useResizeHandler from "./hooks/useResizeHandler.ts";
 
 const Earth: FC = () => {
 
-    // Ref to access the Globe instance from react-globe.gl
+    // Assigns reference to the Globe instance
     const earthElement = useRef<GlobeMethods | undefined>();
 
     // State to trigger updates
