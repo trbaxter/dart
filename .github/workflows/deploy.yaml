@@ -19,15 +19,18 @@ jobs:
 
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
+        with:
+          working-directory: ./dart_frontend
 
       - name: Build project
         run: npm run build
+        working-directory: ./dart_frontend
 
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v3
         with:
           name: production-files
-          path: ./dist
+          path: ./dart_frontend/dist
 
   deploy:
     name: Deploy
