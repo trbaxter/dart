@@ -8,12 +8,12 @@ import useGlobeRadius from "../hooks/useGlobeRadius.ts";
 import useResizeHandler from "../hooks/useResizeHandler.ts";
 
 const Earth: FC = () => {
-    const globeElement = useRef<GlobeMethods | undefined>();
-    const [globeObj, setGlobeObj] = useState<GlobeMethods | undefined>();
+    const earthElement = useRef<GlobeMethods | undefined>();
+    const [globeObj, setglobeObj] = useState<GlobeMethods | undefined>();
 
     useEffect(() => {
-        if (globeElement.current) {
-            setGlobeObj(globeElement.current);
+        if (earthElement.current) {
+            setglobeObj(earthElement.current);
         }
     }, []);
 
@@ -25,7 +25,7 @@ const Earth: FC = () => {
 
     return (
         <Globe
-            ref = { globeElement }
+            ref = { earthElement }
             animateIn = { false }
             globeImageUrl = { earth_img }
             bumpImageUrl = { earth_topology }
