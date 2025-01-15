@@ -9,19 +9,20 @@ import useResizeHandler from "../hooks/useResizeHandler.ts";
 
 const Earth: FC = () => {
     const earthElement = useRef<GlobeMethods | undefined>();
-    const [globeObj, setglobeObj] = useState<GlobeMethods | undefined>();
+    const [earthObject, setEarthObject] = useState<GlobeMethods | undefined>();
 
+    // Sets the Earth globe object once ref is created
     useEffect(() => {
         if (earthElement.current) {
-            setglobeObj(earthElement.current);
+            setEarthObject(earthElement.current);
         }
     }, []);
 
-    const globeRadius = useGlobeRadius(globeObj);
+    const globeRadius = useGlobeRadius(earthObject);
 
-    useCloudLayer(globeObj, globeRadius);
-    useGlobeSetup(globeObj);
-    useResizeHandler(globeObj);
+    useCloudLayer(earthObject, globeRadius);
+    useGlobeSetup(earthObject);
+    useResizeHandler(earthObject);
 
     return (
         <Globe
