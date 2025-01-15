@@ -9,7 +9,7 @@ const useCloudLayer = (globe: any, globeRadius: number | null): MutableRefObject
     const cloudsMeshRef = useRef<Mesh | null>(null);
 
     useEffect(() => {
-        if (!globe || globeRadius === null || globeRadius < 0) return;
+        if (!globe || globeRadius === null) return;
 
         const CLOUDS_ROTATION_SPEED = -0.0006;
 
