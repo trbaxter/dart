@@ -9,7 +9,7 @@ import useResizeHandler from "../hooks/useResizeHandler.ts";
 
 const Earth: FC = () => {
     const globeElement = useRef<GlobeMethods | undefined>();
-    const [globeObj, setGlobeObj] = useState<any>(null);
+    const [globeObj, setGlobeObj] = useState<GlobeMethods | undefined>();
 
     useEffect(() => {
         if (globeElement.current) {
