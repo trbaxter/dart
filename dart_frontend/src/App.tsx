@@ -1,5 +1,5 @@
 import './App.css'
-import Earth from "./homepage/components/Earth.tsx";
+import Earth from "./homepage/components/Earth/Earth.tsx";
 
 function App() {
     return(
