@@ -1,5 +1,5 @@
 import { FC, useEffect, useRef, useState } from 'react';
-import Globe from 'react-globe.gl';
+import Globe, {GlobeMethods} from 'react-globe.gl';
 import earth_img from '../assets/earth-blue-marble.jpg';
 import earth_topology from '../assets/earth-topology.png'
 import useCloudLayer from "../hooks/useCloudLayer.ts";
@@ -8,10 +8,9 @@ import useGlobeRadius from "../hooks/useGlobeRadius.ts";
 import useResizeHandler from "../hooks/useResizeHandler.ts";
 
 const Earth: FC = () => {
-    const globeElement = useRef<any>(null);
+    const globeElement = useRef<GlobeMethods | undefined>();
     const [globeObj, setGlobeObj] = useState<any>(null);
 
-    // Set the globe object after the ref is assigned
     useEffect(() => {
         if (globeElement.current) {
             setGlobeObj(globeElement.current);
@@ -31,6 +30,10 @@ const Earth: FC = () => {
             globeImageUrl = { earth_img }
             bumpImageUrl = { earth_topology }
             backgroundColor = { '#000000' }
+            showAtmosphere = { true }
+            atmosphereAltitude= { 0.13 }
+            waitForGlobeReady = { true }
+
         />
     );
 };
