@@ -1,9 +1,53 @@
+body, #root {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+}
+
 canvas {
-  display: block;
+  z-index: 0;
   position: fixed; /* Ensures it stays in place relative to the viewport */
   top: 0;
   left: 0;
-  width: 100vw; /* Full viewport width */
-  height: 100vh; /* Full viewport height */
+  width: 100vw;
+  height: 100vh;
   touch-action: none; /* Prevent touch gestures like scrolling or zooming */
+  pointer-events: none;
+  overflow: hidden;
+}
+
+nav {
+  position: relative;
+  z-index: 10;
+  background: transparent;
+  color: white;
+  padding: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: black; /* Black fade effect */
+  z-index: 100; /* Ensure it sits above all other elements */
+  opacity: 1; /* Fully transparent by default */
+  pointer-events: none; /* Ignore clicks and interactions */
+  transition: opacity 1s ease-in-out; /* Smooth fade effect */
+}
+
+#overlay.visible {
+  opacity: 1; /* Fully visible when active */
+  pointer-events: auto; /* Enable interactions, if needed */
+}
+
+#overlay.hidden {
+  opacity: 0; /* Hidden when not in use */
+  pointer-events: none;
 }
