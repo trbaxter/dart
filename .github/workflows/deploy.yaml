@@ -16,22 +16,21 @@ jobs:
 
       - name: Setup Node
         uses: actions/setup-node@v3
-        with:
-          node-version: '18'
 
       - name: Install dependencies
-        run: npm install
-        working-directory: dart_frontend
+        uses: bahmutov/npm-install@v1
+        with:
+          working-directory: ./dart_frontend
 
       - name: Build project
         run: npm run build
-        working-directory: dart_frontend
+        working-directory: ./dart_frontend
 
       - name: Upload production-ready build files
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
           name: production-files
-          path: dart_frontend/dist
+          path: ./dart_frontend/dist
 
   deploy:
     name: Deploy
@@ -40,17 +39,14 @@ jobs:
     if: github.ref == 'refs/heads/main'
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-
       - name: Download artifact
         uses: actions/download-artifact@v3
         with:
           name: production-files
-          path: dart_frontend/dist
+          path: ./dist
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: dart_frontend/dist
+          publish_dir: ./dist
