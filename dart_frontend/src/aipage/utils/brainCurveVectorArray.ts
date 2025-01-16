@@ -1,4 +1,3 @@
-
 import { vectorCurveData } from './vectorCurveData.ts';
 import { CatmullRomCurve3, Vector3 } from 'three';
 
