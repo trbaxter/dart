@@ -23,7 +23,7 @@ const useCloudLayer = (earthObject: GlobeMethods | undefined): MutableRefObject<
         if (!camera) return;
 
         // Set camera position and orientation
-        camera.position.set(0, 0, 250);
+        camera.position.set(0, 0, 275);
         camera.lookAt(0, 0, 0);
         camera.updateProjectionMatrix();
     };
