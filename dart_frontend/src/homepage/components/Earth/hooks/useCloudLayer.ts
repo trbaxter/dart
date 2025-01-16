@@ -74,7 +74,7 @@ const useCloudLayer = (earthObject: GlobeMethods | undefined): MutableRefObject<
 
         // Uses promise to load cloud layer only once texture is ready
         Promise<Mesh<SphereGeometry, MeshPhongMaterial>> => {
-        const CLOUDS_ALTITUDE = 0.004;
+        const CLOUDS_ALTITUDE = 0.005;
 
         return new Promise((resolve, reject) => {
             const textureLoader = new TextureLoader();
