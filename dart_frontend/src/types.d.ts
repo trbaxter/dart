@@ -1,6 +1,6 @@
 import { MaterialNode } from '@react-three/fiber';
-import { BrainMaterial } from './aipage/BrainVeins.tsx';
-import { BrainParticleMaterial } from './aipage/BrainParticles.tsx';
+import { BrainMaterial } from './aipage/components/BrainVeins.tsx';
+import { BrainParticleMaterial } from './aipage/components/BrainParticles.tsx';
 import { ShaderMaterial } from "three";
 
 declare module '@react-three/fiber' {
