@@ -1,6 +1,6 @@
 import { extend, useFrame } from '@react-three/fiber';
 import { shaderMaterial } from '@react-three/drei';
-import { randomRange} from "./utils/randomRange.ts";
+import { randomRange } from "./utils/randomRange";
 import { AdditiveBlending, BufferGeometry, CatmullRomCurve3, Color } from 'three';
 import { useEffect, useMemo, useRef } from 'react';
 
