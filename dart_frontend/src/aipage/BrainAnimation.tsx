@@ -1,8 +1,8 @@
 import { Canvas } from '@react-three/fiber';
-import { BrainParticles } from './BrainParticles';
-import { Veins } from './BrainVeins';
+import { BrainParticles } from './components/BrainParticles.tsx';
+import { Veins } from './components/BrainVeins.tsx';
 import { brainCurveVectorArray} from "./utils/brainCurveVectorArray";
-import { RotateGroupFrame } from './RotateGroupFrame';
+import { RotateGroupFrame } from './components/RotateGroupFrame.tsx';
 
 export function BrainAnimation() {
     const curves = brainCurveVectorArray();
