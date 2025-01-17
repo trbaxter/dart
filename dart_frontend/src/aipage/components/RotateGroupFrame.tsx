@@ -7,7 +7,7 @@ export function RotateGroupFrame({ children }: { children: ReactNode }) {
 
     useFrame(() => {
         if (groupRef.current) {
-            groupRef.current.rotation.y -= 0.0005;
+            groupRef.current.rotation.y -= 0.0007;
         }
     });
 
