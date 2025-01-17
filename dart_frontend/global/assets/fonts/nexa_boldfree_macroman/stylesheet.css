@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'nexa_boldregular';
+    src: url('Nexa_Free_Bold-webfont.eot');
+    src: url('Nexa_Free_Bold-webfont.eot?#iefix') format('embedded-opentype'),
+    url('Nexa_Free_Bold-webfont.woff2') format('woff2'),
+    url('Nexa_Free_Bold-webfont.woff') format('woff'),
+    url('Nexa_Free_Bold-webfont.ttf') format('truetype'),
+    url('Nexa_Free_Bold-webfont.svg#nexa_boldregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
