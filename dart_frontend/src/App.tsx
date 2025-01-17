@@ -1,9 +1,9 @@
 import './App.css'
 import { Route, Routes } from 'react-router-dom';
-import Navigation from '../global/components/HandleNavigation.tsx';
-import Earth from "./homepage/components/Earth/Earth.tsx";
+import Navigation from '../global/components/HandleNavigation';
+import Earth from "./homepage/components/Earth/Earth";
 import { useEffect } from "react";
-import { BrainAnimation } from "./aipage/BrainAnimation.tsx";
+import { BrainAnimation } from "./aipage/BrainAnimation";
 
 function App() {
     useEffect(() => {
