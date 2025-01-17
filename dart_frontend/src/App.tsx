@@ -21,8 +21,8 @@ function App() {
             <div id="overlay" className="visible"></div>
             <Navigation/>
             <Routes>
-                <Route path="/" element={ <Earth /> } />
-                <Route path="/ai" element={ <BrainAnimation />} />
+                <Route path="/dart/" element={ <Earth /> } />
+                <Route path="/dart/ai" element={ <BrainAnimation />} />
             </Routes>
         </>
     )
