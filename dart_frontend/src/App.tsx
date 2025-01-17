@@ -18,11 +18,11 @@ function App() {
 
     return (
         <>
-            <div id="overlay" className="visible"></div>
+            <div id = "overlay" className = "visible"></div>
             <Navigation/>
             <Routes>
-                <Route path="/" element={ <Earth /> } />
-                <Route path="/ai" element={ <BrainAnimation />} />
+                <Route path = "/" element = { <Earth /> } />
+                <Route path = "/ai" element = { <BrainAnimation />} />
             </Routes>
         </>
     )
