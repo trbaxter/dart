@@ -49,7 +49,8 @@ const Earth: FC = () => {
                 <h1 style = {{
                     fontFamily: 'Playfair Display',
                     fontSize: '12rem',
-                    fontWeight: 'bold'}}
+                    fontWeight: 'bold',
+                    userSelect: "none" }}
                 >
                     Solventum
                 </h1>
