@@ -45,22 +45,6 @@ const useCloudLayer = (earthObject: GlobeMethods | undefined): MutableRefObject<
         controls.enableRotate = false;
     };
 
-    // Private helper: Remove unwanted DOM elements
-    const removeUnwantedElements = () => {
-        const unwantedSelectors = [
-            '.scene-nav-info',
-            '.float-tooltip-kap',
-            'div[style*="overflow: hidden"]',
-        ];
-
-        unwantedSelectors.forEach((selector) => {
-            const element = document.querySelector(selector);
-            if (element) {
-                element.remove();
-            }
-        });
-    };
-
     /**
      * Creates a cloud layer mesh for the globe.
      *
@@ -153,8 +137,6 @@ const useCloudLayer = (earthObject: GlobeMethods | undefined): MutableRefObject<
         const camera = earthObject.camera?.() as PerspectiveCamera;
         configureCamera(camera);
 
-        // Remove unwanted DOM elements
-        removeUnwantedElements();
 
         if (globeRadius === null) return;
 
@@ -173,7 +155,6 @@ const useCloudLayer = (earthObject: GlobeMethods | undefined): MutableRefObject<
 
         // Cleanup on component unmount
         return () => {
-            removeUnwantedElements();
             if (cloudsMeshRef.current) {
                 earthObject.scene().remove(cloudsMeshRef.current);
                 cleanupCloudLayerMesh(cloudsMeshRef.current);
