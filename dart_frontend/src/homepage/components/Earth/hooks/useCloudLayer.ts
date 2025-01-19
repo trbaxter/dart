@@ -20,7 +20,7 @@ const useCloudLayer = (earthObject: GlobeMethods | undefined): MutableRefObject<
 
         setGlobeRadius(getGlobeRadius(earthObject!));
     }, [earthObject]);
-    
+
     useEffect(() => {
         if (!earthObject || globeRadius === null) return;
 

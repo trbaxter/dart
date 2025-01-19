@@ -1,8 +1,8 @@
-import { useFrame } from '@react-three/fiber';
-import { Group } from 'three';
-import { ReactNode, useRef } from 'react';
+import {useFrame} from '@react-three/fiber';
+import {Group} from 'three';
+import {ReactNode, useRef} from 'react';
 
-export function RotateGroupFrame({ children }: { children: ReactNode }) {
+export function RotateGroupFrame({children}: { children: ReactNode }) {
     const groupRef = useRef<Group>(null!);
 
     useFrame(() => {

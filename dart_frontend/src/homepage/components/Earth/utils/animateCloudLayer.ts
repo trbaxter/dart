@@ -1,5 +1,5 @@
-import { MutableRefObject } from 'react';
-import { Mesh } from 'three';
+import {MutableRefObject} from 'react';
+import {Mesh} from 'three';
 
 /**
  * Animates a Three.js mesh with a rotation animation.

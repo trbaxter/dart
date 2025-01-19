@@ -1,4 +1,4 @@
-import { PerspectiveCamera } from 'three';
+import {PerspectiveCamera} from 'three';
 
 /**
  * Configures the camera for the globe animation.

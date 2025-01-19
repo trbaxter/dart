@@ -1,7 +1,7 @@
-import { extend, useFrame } from '@react-three/fiber';
-import { shaderMaterial } from '@react-three/drei';
-import { AdditiveBlending, CatmullRomCurve3, Color, DoubleSide, ShaderMaterial } from 'three';
-import { useRef } from 'react';
+import {extend, useFrame} from '@react-three/fiber';
+import {shaderMaterial} from '@react-three/drei';
+import {AdditiveBlending, CatmullRomCurve3, Color, DoubleSide, ShaderMaterial} from 'three';
+import {useRef} from 'react';
 
 export const BrainMaterial = shaderMaterial(
     {
@@ -36,20 +36,20 @@ export const BrainMaterial = shaderMaterial(
   `
 );
 
-extend({ BrainMaterial });
+extend({BrainMaterial});
 
 function Vein(props: { curve: CatmullRomCurve3 }) {
-    const { curve } = props;
+    const {curve} = props;
     const brainMat = useRef<ShaderMaterial>(null!);
 
-    useFrame(({ clock }) => {
+    useFrame(({clock}) => {
         brainMat.current.uniforms.time.value = clock.getElapsedTime();
     });
 
     return (
         <>
             <mesh>
-                <tubeGeometry args={[curve, 64, 0.001, 2, false]} />
+                <tubeGeometry args={[curve, 64, 0.001, 2, false]}/>
                 <brainMaterial
                     ref={brainMat}
                     side={DoubleSide}
@@ -64,11 +64,11 @@ function Vein(props: { curve: CatmullRomCurve3 }) {
 }
 
 export function Veins(props: { curves: CatmullRomCurve3[] }) {
-    const { curves } = props;
+    const {curves} = props;
     return (
         <>
             {curves.map((curve, index) => {
-                return <Vein key={index} curve={curve} />;
+                return <Vein key={index} curve={curve}/>;
             })}
         </>
     );

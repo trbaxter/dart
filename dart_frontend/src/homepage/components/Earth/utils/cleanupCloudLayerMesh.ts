@@ -1,4 +1,4 @@
-import { Mesh, Material } from 'three';
+import {Material, Mesh} from 'three';
 
 /**
  * Cleans up a Three.js mesh by disposing of its geometry and material.

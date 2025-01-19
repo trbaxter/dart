@@ -1,11 +1,11 @@
-import { MutableRefObject } from 'react';
-import { Mesh, PerspectiveCamera } from 'three';
-import { GlobeMethods } from 'react-globe.gl';
-import { configureCamera } from './configureCamera';
-import { configureControls } from './configureControls';
-import { createCloudLayerMesh } from './createCloudLayerMesh';
-import { cleanupCloudLayerMesh } from './cleanupCloudLayerMesh';
-import { animateCloudLayer } from './animateCloudLayer';
+import {MutableRefObject} from 'react';
+import {Mesh, PerspectiveCamera} from 'three';
+import {GlobeMethods} from 'react-globe.gl';
+import {configureCamera} from './configureCamera';
+import {configureControls} from './configureControls';
+import {createCloudLayerMesh} from './createCloudLayerMesh';
+import {cleanupCloudLayerMesh} from './cleanupCloudLayerMesh';
+import {animateCloudLayer} from './animateCloudLayer';
 
 /**
  * Initializes and manages the globe and cloud layer.

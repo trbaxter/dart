@@ -1,5 +1,5 @@
-import { vectorCurveData } from './vectorCurveData.ts';
-import { CatmullRomCurve3, Vector3 } from 'three';
+import {vectorCurveData} from './vectorCurveData.ts';
+import {CatmullRomCurve3, Vector3} from 'three';
 
 export function brainCurveVectorArray(): CatmullRomCurve3[] {
     const vectorPoints = vectorCurveData.brain[0].paths;

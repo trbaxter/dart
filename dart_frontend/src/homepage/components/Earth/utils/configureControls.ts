@@ -1,4 +1,4 @@
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls';
 
 /**
  * Configures the controls for the globe animation.

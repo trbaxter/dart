@@ -1,5 +1,5 @@
-import { FC, useEffect, useRef, useState } from 'react';
-import Globe, { GlobeMethods } from 'react-globe.gl';
+import {FC, useEffect, useRef, useState} from 'react';
+import Globe, {GlobeMethods} from 'react-globe.gl';
 import earth_img from './assets/earth-blue-marble.jpg';
 import earth_topology from './assets/earth-topology.png'
 import useCloudLayer from "./hooks/useCloudLayer.ts";
@@ -20,16 +20,16 @@ const Earth: FC = () => {
 
 
     return (
-            <Globe
-                ref = { earthElement }
-                animateIn = { false }
-                globeImageUrl = { earth_img }
-                bumpImageUrl = { earth_topology }
-                backgroundColor = "#000000"
-                showAtmosphere = { true }
-                atmosphereAltitude = { 0.13 }
-                waitForGlobeReady = { true }
-            />
+        <Globe
+            ref={earthElement}
+            animateIn={false}
+            globeImageUrl={earth_img}
+            bumpImageUrl={earth_topology}
+            backgroundColor="#000000"
+            showAtmosphere={true}
+            atmosphereAltitude={0.13}
+            waitForGlobeReady={true}
+        />
     );
 }
 

@@ -1,11 +1,11 @@
-import { extend, useFrame } from '@react-three/fiber';
-import { shaderMaterial } from '@react-three/drei';
-import { randomRange } from "../utils/randomRange.ts";
-import { AdditiveBlending, BufferGeometry, CatmullRomCurve3, Color } from 'three';
-import { useEffect, useMemo, useRef } from 'react';
+import {extend, useFrame} from '@react-three/fiber';
+import {shaderMaterial} from '@react-three/drei';
+import {randomRange} from "../utils/randomRange.ts";
+import {AdditiveBlending, BufferGeometry, CatmullRomCurve3, Color} from 'three';
+import {useEffect, useMemo, useRef} from 'react';
 
 export const BrainParticleMaterial = shaderMaterial(
-    { time: 0, color: new Color(0.1, 0.3, 0.6) },
+    {time: 0, color: new Color(0.1, 0.3, 0.6)},
     // vertex shader
     /*glsl*/ `
     varying vec2 vUv;
@@ -30,10 +30,10 @@ export const BrainParticleMaterial = shaderMaterial(
   `
 );
 
-extend({ BrainParticleMaterial });
+extend({BrainParticleMaterial});
 
 export function BrainParticles(props: { curves: CatmullRomCurve3[] }) {
-    const { curves } = props;
+    const {curves} = props;
     const density = 10;
     const numberOfPoints = density * curves.length;
     const myPoints = useRef<

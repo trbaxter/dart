@@ -1,4 +1,4 @@
-import { GlobeMethods } from 'react-globe.gl';
+import {GlobeMethods} from 'react-globe.gl';
 
 /**
  * Retrieves the static globe radius.

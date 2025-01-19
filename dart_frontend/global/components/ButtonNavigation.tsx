@@ -1,5 +1,5 @@
-import { usePageTransitions } from '../hooks/usePageTransitions';
-import { useLocation } from 'react-router-dom';
+import {usePageTransitions} from '../hooks/usePageTransitions';
+import {useLocation} from 'react-router-dom';
 
 
 function Navigation() {

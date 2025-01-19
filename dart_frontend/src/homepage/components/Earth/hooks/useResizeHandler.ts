@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
-import { WebGLRenderer, PerspectiveCamera } from 'three';
+import {useEffect} from 'react';
+import {PerspectiveCamera, WebGLRenderer} from 'three';
 
 const useResizeHandler = (globeObj: any) => {
     useEffect(() => {
@@ -19,7 +19,9 @@ const useResizeHandler = (globeObj: any) => {
 
             // Update controls to ensure smooth animations
             const controls = globeObj.controls?.();
-            if (controls) { controls.update(); }
+            if (controls) {
+                controls.update();
+            }
         };
 
         // Attach resize event listener
@@ -29,7 +31,9 @@ const useResizeHandler = (globeObj: any) => {
         onResize();
 
         // Cleanup on unmount
-        return () => { window.removeEventListener('resize', onResize); };
+        return () => {
+            window.removeEventListener('resize', onResize);
+        };
     }, [globeObj]);
 };
 
