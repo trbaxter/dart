@@ -15,14 +15,12 @@ const useCloudLayer = (earthObject: GlobeMethods | undefined): MutableRefObject<
     const cloudsMeshRef = useRef<Mesh | null>(null);
     const [globeRadius, setGlobeRadius] = useState<number | null>(null);
 
-    // Fetch the globe's radius
     useEffect(() => {
         if (!earthObject) return;
 
         setGlobeRadius(getGlobeRadius(earthObject!));
     }, [earthObject]);
-
-    // Initialize and manage the globe and cloud layer
+    
     useEffect(() => {
         if (!earthObject || globeRadius === null) return;
 
