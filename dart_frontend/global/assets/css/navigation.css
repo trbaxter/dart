@@ -1,6 +1,7 @@
+/* Navigation bar */
 nav {
     display: flex;
-    gap: 10px; /* Add spacing between buttons */
+    gap: 10px;
 }
 
 .nav-button {
@@ -19,6 +20,7 @@ nav {
     transition: color 0.3s ease-in-out;
 }
 
+/* Base button rectangle (hidden by default) */
 .nav-button::before {
     content: '';
     position: absolute;
@@ -26,19 +28,21 @@ nav {
     left: 0;
     width: 100%;
     height: 100%;
-    border-radius: 10px; /* Rounded corners */
-    border: 2px solid transparent; /* No visible border by default */
-    z-index: -1; /* Place the rectangle behind the text */
-    transition: border-color 0.35s ease-in-out, box-shadow 0.35s ease-in-out;
+    border-radius: 10px;
+    border: 2px solid transparent; /* Default: No border */
+    z-index: -1; /* Place rectangle behind text */
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
+/* Hover effect: Green border and shadow */
 .nav-button:hover::before {
-    border-color: #0DDE53; /* Bright green border color on hover */
+    border-color: #0DDE53;
     box-shadow: 0 0 4px #0DDE53;
 }
 
+/* Active button: White border */
 .nav-button.active::before {
-    border-color: white; /* White border for active state */
+    border-color: white;
 }
 
 .nav-button.active {
@@ -46,6 +50,7 @@ nav {
     cursor: default;
 }
 
+/* Remove focus outline */
 .nav-button:focus {
-    outline: none; /* Ensures no outline appears when the button is clicked */
+    outline: none;
 }
