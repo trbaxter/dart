@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState, MutableRefObject } from 'react';
 import { Mesh, MeshPhongMaterial, SphereGeometry, TextureLoader, Material, PerspectiveCamera } from 'three';
 import clouds from '../assets/clouds.png';
-import { GlobeMethods } from "react-globe.gl";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import { GlobeMethods } from 'react-globe.gl';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { configureCamera } from './useCameraConfig'
 
 /**
  * Adds and manages a rotating cloud layer around a globe object.
@@ -16,17 +17,6 @@ const useCloudLayer = (earthObject: GlobeMethods | undefined): MutableRefObject<
     const cloudsMeshRef = useRef<Mesh | null>(null);
     const [globeRadius, setGlobeRadius] = useState<number | null>(null);
 
-    // Private helper: Configure the camera
-    const configureCamera = (camera: PerspectiveCamera | undefined) => {
-
-        // Safety check in case of invalid/undefined camera
-        if (!camera) return;
-
-        // Set camera position and orientation
-        camera.position.set(0, 0, 275);
-        camera.lookAt(0, 0, 0);
-        camera.updateProjectionMatrix();
-    };
 
     // Private helper: Configure the controls
     const configureControls = (controls: OrbitControls | undefined) => {
