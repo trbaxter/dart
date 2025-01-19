@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom'; // Use React Router's `useNavigate`
+import { useLocation, useNavigate } from 'react-router-dom';
 import '../assets/css/navigation.css';
 
 function Navigation() {
     const location = useLocation();
-    const navigate = useNavigate(); // React Router's navigation function
+    const navigate = useNavigate();
     const [activePath, setActivePath] = useState(location.pathname);
 
     const handleNavigation = (path: string) => {
@@ -14,15 +14,13 @@ function Navigation() {
         const overlay = document.getElementById('overlay');
         if (overlay) overlay.classList.replace('hidden', 'visible');
 
-        // Update the active button 750ms after the fade-to-black starts
         setTimeout(() => {
-            setActivePath(path); // Update the active navigation button
+            setActivePath(path);
         }, 750);
 
-        // After 1000ms, navigate to the new page and fade-in
         setTimeout(() => {
             if (overlay) overlay.classList.replace('visible', 'hidden');
-            navigate(path); // Navigate to the new page
+            navigate(path);
         }, 1000);
     };
 
