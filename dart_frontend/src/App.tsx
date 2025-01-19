@@ -11,7 +11,7 @@ function App() {
         if (overlay) {
             setTimeout(() => {
                 overlay.classList.add('hidden');
-            }, 500);
+            }, 100);
         }
     }, []);
 
