@@ -1,9 +1,9 @@
 import './App.css'
 import { Route, Routes } from 'react-router-dom';
-import Navigation from '../global/components/HandleNavigation';
 import { useEffect } from "react";
 import { BrainAnimation } from "./aipage/BrainAnimation";
 import Homepage from "./homepage/Homepage";
+import Navigation from "../global/components/ButtonNavigation.tsx";
 
 function App() {
     useEffect(() => {
