@@ -1,4 +1,3 @@
-import { Suspense } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from "react-router-dom"
 import './index.css'
@@ -9,11 +8,8 @@ createRoot(document.getElementById('root')!).render(
         basename = "/dart/"
         future = {{
             v7_startTransition: true,
-            v7_relativeSplatPath: true
-        }}
+            v7_relativeSplatPath: true}}
     >
-        <Suspense>
-            <App />
-        </Suspense>
+        <App />
     </BrowserRouter>
 )
