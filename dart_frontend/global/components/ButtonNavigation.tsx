@@ -34,13 +34,13 @@ function Navigation() {
                 onClick={() => handleNavigation('/')}
                 className={`nav-button ${isActive('/') ? 'active' : ''}`}
             >
-                Homepage
+                &thinsp;Homepage
             </button>
             <button
                 onClick={() => handleNavigation('/ai')}
                 className={`nav-button ${isActive('/ai') ? 'active' : ''}`}
             >
-                DART AI
+                &thinsp;DART AI
             </button>
         </nav>
     );
