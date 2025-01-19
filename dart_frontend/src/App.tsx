@@ -1,9 +1,9 @@
 import './App.css'
 import { Route, Routes } from 'react-router-dom';
 import Navigation from '../global/components/HandleNavigation';
-import Earth from "./homepage/components/Earth/Earth";
 import { useEffect } from "react";
 import { BrainAnimation } from "./aipage/BrainAnimation";
+import Homepage from "./homepage/Homepage";
 
 function App() {
     useEffect(() => {
@@ -21,7 +21,7 @@ function App() {
             <div id = "overlay" className = "visible"></div>
             <Navigation/>
             <Routes>
-                <Route path = "/" element = { <Earth /> } />
+                <Route path = "/" element = { <Homepage /> } />
                 <Route path = "/ai" element = { <BrainAnimation />} />
             </Routes>
         </>
