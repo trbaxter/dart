@@ -76,7 +76,7 @@ const Earth: FC = () => {
             </div>
         </div>
     );
-};
+}
 
 
 export default Earth;
