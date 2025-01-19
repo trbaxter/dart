@@ -29,11 +29,12 @@ nav {
     border-radius: 10px; /* Rounded corners */
     border: 2px solid transparent; /* No visible border by default */
     z-index: -1; /* Place the rectangle behind the text */
-    transition: border-color 0.3s ease-in-out; /* Smooth hover effect */
+    transition: border-color 0.35s ease-in-out, box-shadow 0.35s ease-in-out;
 }
 
 .nav-button:hover::before {
     border-color: #0DDE53; /* Bright green border color on hover */
+    box-shadow: 0 0 4px #0DDE53;
 }
 
 .nav-button.active::before {
