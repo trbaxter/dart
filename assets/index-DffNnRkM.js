@@ -3950,13 +3950,13 @@ No matching component was found for:
       float opacity = 0.9 * smoothstep(0.5, 0.4, disc);
       gl_FragColor = vec4(vec3(opacity), 1.);
     }
-  `);U8({BrainParticleMaterial:SW});function wW(i){const{curves:e}=i,t=10,n=t*e.length,r=nt.useRef([]),s=nt.useRef(null),o=nt.useMemo(()=>{const l=[];for(let u=0;u<n;u++)l.push(P4(-1,1),P4(-1,1),P4(-1,1));return new Float32Array(l)},[n]),a=nt.useMemo(()=>{const l=[];for(let u=0;u<n;u++)l.push(P4(.3,1));return new Float32Array(l)},[n]);return nt.useEffect(()=>{for(let l=0;l<e.length;l++)for(let u=0;u<t;u++)r.current.push({currentOffset:Math.random(),speed:Math.random()*.001,curve:e[l],curPosition:Math.random()})}),O8(()=>{const l=s.current.attributes.position.array;for(let u=0;u<r.current.length;u++){r.current[u].curPosition+=r.current[u].speed,r.current[u].curPosition=r.current[u].curPosition%1;const f=r.current[u].curve.getPointAt(r.current[u].curPosition);l[u*3]=f.x,l[u*3+1]=f.y,l[u*3+2]=f.z}s.current.attributes.position.needsUpdate=!0}),pn.jsx(pn.Fragment,{children:pn.jsxs("points",{children:[pn.jsxs("bufferGeometry",{attach:"geometry",ref:s,children:[pn.jsx("bufferAttribute",{attach:"attributes-position",count:o.length/3,array:o,itemSize:3}),pn.jsx("bufferAttribute",{attach:"attributes-randoms",count:a.length,array:a,itemSize:1})]}),pn.jsx("brainParticleMaterial",{attach:"material",depthTest:!1,depthWrite:!1,transparent:!0,blending:df})]})})}const bW=cN({time:0,color:new Ut(.1,.53,.16)},`
+  `);U8({BrainParticleMaterial:SW});function wW(i){const{curves:e}=i,t=5,n=t*e.length,r=nt.useRef([]),s=nt.useRef(null),o=nt.useMemo(()=>{const l=[];for(let u=0;u<n;u++)l.push(P4(-1,1),P4(-1,1),P4(-1,1));return new Float32Array(l)},[n]),a=nt.useMemo(()=>{const l=[];for(let u=0;u<n;u++)l.push(P4(.3,1));return new Float32Array(l)},[n]);return nt.useEffect(()=>{for(let l=0;l<e.length;l++)for(let u=0;u<t;u++)r.current.push({currentOffset:Math.random(),speed:Math.random()*.001,curve:e[l],curPosition:Math.random()})}),O8(()=>{const l=s.current.attributes.position.array;for(let u=0;u<r.current.length;u++){r.current[u].curPosition+=r.current[u].speed,r.current[u].curPosition=r.current[u].curPosition%1;const f=r.current[u].curve.getPointAt(r.current[u].curPosition);l[u*3]=f.x,l[u*3+1]=f.y,l[u*3+2]=f.z}s.current.attributes.position.needsUpdate=!0}),pn.jsx(pn.Fragment,{children:pn.jsxs("points",{children:[pn.jsxs("bufferGeometry",{attach:"geometry",ref:s,children:[pn.jsx("bufferAttribute",{attach:"attributes-position",count:o.length/3,array:o,itemSize:3}),pn.jsx("bufferAttribute",{attach:"attributes-randoms",count:a.length,array:a,itemSize:1})]}),pn.jsx("brainParticleMaterial",{attach:"material",depthTest:!1,depthWrite:!1,transparent:!0,blending:df})]})})}const bW=cN({time:0,color:new Ut(.1,.53,.16)},`
     varying vec2 vUv;
     uniform float time;
     varying float vProgress;
     void main() {
       vUv = uv;
-      vProgress = smoothstep(-1., 1., sin(vUv.x*8. + time * 2.));
+      vProgress = smoothstep(-1., 1., sin(vUv.x*8. + time * 2.5));
       gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
     }
   `,`
