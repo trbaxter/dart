@@ -1,4 +1,4 @@
-import {usePageTransitions} from '../hooks/usePageTransitions';
+import {usePageTransitions} from '../utils/usePageTransitions.ts';
 import {useLocation} from 'react-router-dom';
 
 
