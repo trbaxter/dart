@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, MutableRefObject } from 'react';
-import {Mesh, MeshPhongMaterial, SphereGeometry, TextureLoader, Material, PerspectiveCamera} from 'three';
+import { Mesh, MeshPhongMaterial, SphereGeometry, TextureLoader, Material, PerspectiveCamera } from 'three';
 import clouds from '../assets/clouds.png';
 import { GlobeMethods } from "react-globe.gl";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
