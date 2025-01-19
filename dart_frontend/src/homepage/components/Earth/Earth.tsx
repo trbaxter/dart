@@ -18,7 +18,6 @@ const Earth: FC = () => {
     useCloudLayer(earthObject);
     useResizeHandler(earthObject);
 
-
     return (
         <Globe
             ref={earthElement}
@@ -32,6 +31,5 @@ const Earth: FC = () => {
         />
     );
 }
-
 
 export default Earth;
