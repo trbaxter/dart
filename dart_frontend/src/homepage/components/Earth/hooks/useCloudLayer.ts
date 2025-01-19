@@ -12,27 +12,27 @@ import {initializeCloudLayer} from '../utils/initializeCloudLayer';
  * @returns A ref object containing the cloud layer mesh (`Mesh`) or `null` if not yet initialized.
  */
 const useCloudLayer = (earthObject: GlobeMethods | undefined): MutableRefObject<Mesh | null> => {
-    const cloudsMeshRef = useRef<Mesh | null>(null);
-    const [globeRadius, setGlobeRadius] = useState<number | null>(null);
+  const cloudsMeshRef = useRef<Mesh | null>(null);
+  const [globeRadius, setGlobeRadius] = useState<number | null>(null);
 
-    useEffect(() => {
-        if (!earthObject) return;
+  useEffect(() => {
+    if (!earthObject) return;
 
-        setGlobeRadius(getGlobeRadius(earthObject!));
-    }, [earthObject]);
+    setGlobeRadius(getGlobeRadius(earthObject!));
+  }, [earthObject]);
 
-    useEffect(() => {
-        if (!earthObject || globeRadius === null) return;
+  useEffect(() => {
+    if (!earthObject || globeRadius === null) return;
 
-        return initializeCloudLayer(
-            earthObject,
-            globeRadius,
-            cloudsMeshRef,
-            clouds
-        );
-    }, [earthObject, globeRadius]);
+    return initializeCloudLayer(
+      earthObject,
+      globeRadius,
+      cloudsMeshRef,
+      clouds
+    );
+  }, [earthObject, globeRadius]);
 
-    return cloudsMeshRef;
+  return cloudsMeshRef;
 };
 
 export default useCloudLayer;

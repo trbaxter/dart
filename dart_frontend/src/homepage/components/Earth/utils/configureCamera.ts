@@ -6,9 +6,9 @@ import {PerspectiveCamera} from 'three';
  * @param camera - The PerspectiveCamera instance to configure.
  */
 export const configureCamera = (camera: PerspectiveCamera | undefined) => {
-    if (!camera) return;
+  if (!camera) return;
 
-    camera.position.set(0, 0, 275);
-    camera.lookAt(0, 0, 0);
-    camera.updateProjectionMatrix();
+  camera.position.set(0, 0, 275);
+  camera.lookAt(0, 0, 0);
+  camera.updateProjectionMatrix();
 };

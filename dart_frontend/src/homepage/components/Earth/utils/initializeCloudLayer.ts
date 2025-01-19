@@ -16,34 +16,34 @@ import {animateCloudLayer} from './animateCloudLayer';
  * @param cloudTexturePath - The path to the cloud texture image.
  */
 export const initializeCloudLayer = (
-    earthObject: GlobeMethods,
-    globeRadius: number,
-    cloudsMeshRef: MutableRefObject<Mesh | null>,
-    cloudTexturePath: string
+  earthObject: GlobeMethods,
+  globeRadius: number,
+  cloudsMeshRef: MutableRefObject<Mesh | null>,
+  cloudTexturePath: string
 ): (() => void) => {
-    const controls = earthObject.controls?.();
-    configureControls(controls);
+  const controls = earthObject.controls?.();
+  configureControls(controls);
 
-    const camera = earthObject.camera?.() as PerspectiveCamera;
-    configureCamera(camera);
+  const camera = earthObject.camera?.() as PerspectiveCamera;
+  configureCamera(camera);
 
-    const CLOUDS_ROTATION_SPEED = -0.0006;
+  const CLOUDS_ROTATION_SPEED = -0.0006;
 
-    createCloudLayerMesh(globeRadius, cloudTexturePath)
-        .then((cloudsMesh) => {
-            cloudsMeshRef.current = cloudsMesh;
-            earthObject.scene().add(cloudsMesh);
+  createCloudLayerMesh(globeRadius, cloudTexturePath)
+    .then((cloudsMesh) => {
+      cloudsMeshRef.current = cloudsMesh;
+      earthObject.scene().add(cloudsMesh);
 
-            animateCloudLayer(cloudsMeshRef, CLOUDS_ROTATION_SPEED);
-        })
-        .catch((error) => console.error('Error loading cloud texture:', error));
+      animateCloudLayer(cloudsMeshRef, CLOUDS_ROTATION_SPEED);
+    })
+    .catch((error) => console.error('Error loading cloud texture:', error));
 
-    // Return cleanup function
-    return () => {
-        if (cloudsMeshRef.current) {
-            earthObject.scene().remove(cloudsMeshRef.current);
-            cleanupCloudLayerMesh(cloudsMeshRef.current);
-            cloudsMeshRef.current = null;
-        }
-    };
+  // Return cleanup function
+  return () => {
+    if (cloudsMeshRef.current) {
+      earthObject.scene().remove(cloudsMeshRef.current);
+      cleanupCloudLayerMesh(cloudsMeshRef.current);
+      cloudsMeshRef.current = null;
+    }
+  };
 };

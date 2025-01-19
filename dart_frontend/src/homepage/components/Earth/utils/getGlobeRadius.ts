@@ -7,5 +7,5 @@ import {GlobeMethods} from 'react-globe.gl';
  * @returns The static radius of the globe.
  */
 export const getGlobeRadius = (earthObject: GlobeMethods): number => {
-    return earthObject.getGlobeRadius!();
+  return earthObject.getGlobeRadius!();
 };

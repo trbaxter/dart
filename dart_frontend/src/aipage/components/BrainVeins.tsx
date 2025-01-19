@@ -4,13 +4,13 @@ import {AdditiveBlending, CatmullRomCurve3, Color, DoubleSide, ShaderMaterial} f
 import {useRef} from 'react';
 
 export const BrainMaterial = shaderMaterial(
-    {
-        time: 0,
-        color: new Color(0.1, 0.53, 0.16)
-    },
-    // vertex shader
-    /*glsl*/
-    `
+  {
+    time: 0,
+    color: new Color(0.1, 0.53, 0.16)
+  },
+  // vertex shader
+  /*glsl*/
+  `
     varying vec2 vUv;
     uniform float time;
     varying float vProgress;
@@ -20,8 +20,8 @@ export const BrainMaterial = shaderMaterial(
       gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
     }
   `,
-    // fragment shader
-    /*glsl*/ `
+  // fragment shader
+  /*glsl*/ `
     uniform float time;
     uniform vec3 color;
     varying vec2 vUv;
@@ -39,37 +39,37 @@ export const BrainMaterial = shaderMaterial(
 extend({BrainMaterial});
 
 function Vein(props: { curve: CatmullRomCurve3 }) {
-    const {curve} = props;
-    const brainMat = useRef<ShaderMaterial>(null!);
+  const {curve} = props;
+  const brainMat = useRef<ShaderMaterial>(null!);
 
-    useFrame(({clock}) => {
-        brainMat.current.uniforms.time.value = clock.getElapsedTime();
-    });
+  useFrame(({clock}) => {
+    brainMat.current.uniforms.time.value = clock.getElapsedTime();
+  });
 
-    return (
-        <>
-            <mesh>
-                <tubeGeometry args={[curve, 64, 0.001, 2, false]}/>
-                <brainMaterial
-                    ref={brainMat}
-                    side={DoubleSide}
-                    transparent={true}
-                    depthTest={false}
-                    depthWrite={false}
-                    blending={AdditiveBlending}
-                />
-            </mesh>
-        </>
-    );
+  return (
+    <>
+      <mesh>
+        <tubeGeometry args={[curve, 64, 0.001, 2, false]}/>
+        <brainMaterial
+          ref={brainMat}
+          side={DoubleSide}
+          transparent={true}
+          depthTest={false}
+          depthWrite={false}
+          blending={AdditiveBlending}
+        />
+      </mesh>
+    </>
+  );
 }
 
 export function Veins(props: { curves: CatmullRomCurve3[] }) {
-    const {curves} = props;
-    return (
-        <>
-            {curves.map((curve, index) => {
-                return <Vein key={index} curve={curve}/>;
-            })}
-        </>
-    );
+  const {curves} = props;
+  return (
+    <>
+      {curves.map((curve, index) => {
+        return <Vein key={index} curve={curve}/>;
+      })}
+    </>
+  );
 }

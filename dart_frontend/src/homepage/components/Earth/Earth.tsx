@@ -6,30 +6,30 @@ import useCloudLayer from "./hooks/useCloudLayer.ts";
 import useResizeHandler from "./hooks/useResizeHandler.ts";
 
 const Earth: FC = () => {
-    const earthElement = useRef<GlobeMethods | undefined>();
-    const [earthObject, setEarthObject] = useState<GlobeMethods | undefined>();
+  const earthElement = useRef<GlobeMethods | undefined>();
+  const [earthObject, setEarthObject] = useState<GlobeMethods | undefined>();
 
-    useEffect(() => {
-        if (earthElement.current) {
-            setEarthObject(earthElement.current);
-        }
-    }, []);
+  useEffect(() => {
+    if (earthElement.current) {
+      setEarthObject(earthElement.current);
+    }
+  }, []);
 
-    useCloudLayer(earthObject);
-    useResizeHandler(earthObject);
+  useCloudLayer(earthObject);
+  useResizeHandler(earthObject);
 
-    return (
-        <Globe
-            ref={earthElement}
-            animateIn={false}
-            globeImageUrl={earth_img}
-            bumpImageUrl={earth_topology}
-            backgroundColor="#000000"
-            showAtmosphere={true}
-            atmosphereAltitude={0.13}
-            waitForGlobeReady={true}
-        />
-    );
+  return (
+    <Globe
+      ref={earthElement}
+      animateIn={false}
+      globeImageUrl={earth_img}
+      bumpImageUrl={earth_topology}
+      backgroundColor="#000000"
+      showAtmosphere={true}
+      atmosphereAltitude={0.13}
+      waitForGlobeReady={true}
+    />
+  );
 }
 
 export default Earth;

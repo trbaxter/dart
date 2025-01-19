@@ -6,13 +6,13 @@ import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls';
  * @param controls - The OrbitControls instance to configure.
  */
 export const configureControls = (controls: OrbitControls | undefined): void => {
-    if (!controls) return;
+  if (!controls) return;
 
-    const AUTO_ROTATE_SPEED = 0.35;
-    controls.autoRotate = true;
-    controls.autoRotateSpeed = AUTO_ROTATE_SPEED;
+  const AUTO_ROTATE_SPEED = 0.35;
+  controls.autoRotate = true;
+  controls.autoRotateSpeed = AUTO_ROTATE_SPEED;
 
-    controls.enableZoom = false;
-    controls.enablePan = false;
-    controls.enableRotate = false;
+  controls.enableZoom = false;
+  controls.enablePan = false;
+  controls.enableRotate = false;
 };
