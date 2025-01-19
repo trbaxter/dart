@@ -34,7 +34,7 @@ extend({BrainParticleMaterial});
 
 export function BrainParticles(props: { curves: CatmullRomCurve3[] }) {
     const {curves} = props;
-    const density = 10;
+    const density = 5;
     const numberOfPoints = density * curves.length;
     const myPoints = useRef<
         {
