@@ -1,6 +1,6 @@
-import {pageTransitions} from '../utils/pageTransitions.ts';
-import {useLocation} from 'react-router-dom';
-
+import { pageTransitions } from '../utils/pageTransitions.ts';
+import { useLocation } from 'react-router-dom';
+import '../assets/css/navigation.css';
 
 function Navigation() {
     const handleNavigation = pageTransitions();
@@ -11,29 +11,15 @@ function Navigation() {
         <nav>
             <button
                 onClick={() => !isActive('/') && handleNavigation('/')}
-                style={{
-                    background: 'none',
-                    color: 'white',
-                    border: 'none',
-                    pointerEvents: isActive('/') ? 'none' : 'auto',
-                    cursor: isActive('/') ? 'default' : 'pointer',
-                    userSelect: "none"
-                }}
+                className={`nav-button ${isActive('/') ? 'active' : ''}`}
             >
-                Homepage
+                &thinsp;Homepage
             </button>
             <button
                 onClick={() => !isActive('/ai') && handleNavigation('/ai')}
-                style={{
-                    background: 'none',
-                    color: 'white',
-                    border: 'none',
-                    pointerEvents: isActive('/ai') ? 'none' : 'auto',
-                    cursor: isActive('/ai') ? 'default' : 'pointer',
-                    userSelect: "none"
-                }}
+                className={`nav-button ${isActive('/ai') ? 'active' : ''}`}
             >
-                DART AI
+                &thinsp;DART AI
             </button>
         </nav>
     );
