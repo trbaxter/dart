@@ -1,9 +1,9 @@
-import {usePageTransitions} from '../utils/usePageTransitions.ts';
+import {pageTransitions} from '../utils/pageTransitions.ts';
 import {useLocation} from 'react-router-dom';
 
 
 function Navigation() {
-    const handleNavigation = usePageTransitions();
+    const handleNavigation = pageTransitions();
     const location = useLocation();
     const isActive = (path: string) => location.pathname === path;
 

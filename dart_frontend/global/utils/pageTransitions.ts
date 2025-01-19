@@ -1,6 +1,6 @@
 import {useNavigate} from 'react-router-dom';
 
-export function usePageTransitions() {
+export function pageTransitions() {
     const navigate = useNavigate();
 
     // Function to show the overlay
