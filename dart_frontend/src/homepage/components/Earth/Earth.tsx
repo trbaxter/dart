@@ -1,5 +1,5 @@
 import { FC, useEffect, useRef, useState } from 'react';
-import Globe, {GlobeMethods} from 'react-globe.gl';
+import Globe, { GlobeMethods } from 'react-globe.gl';
 import earth_img from './assets/earth-blue-marble.jpg';
 import earth_topology from './assets/earth-topology.png'
 import useCloudLayer from "./hooks/useCloudLayer.ts";
